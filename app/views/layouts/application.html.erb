@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SupinbombJS</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<p style="color:blue;" id="user_nav">
+  <% if user_signed_in? %>
+    <%= current_user.email %> |
+    <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "Inscription", new_user_registration_path %> |
+    <%= link_to "Connexion", new_user_session_path %>
+  <% end %>
+</p>
+
+<p><%= notice %></p>
+<p><%= alert %></p>
+
+	<%= yield %>
+
+</body>
+</html>
+
+<!-- <div class="span4">
+          <div class="well sidebar-nav" id="users">
+            <ul class="nav nav-list" id="user-list">
+              <li class="nav-header">
+                Chatty
+              </li>
+              <li class="active">
+                <a href="#users">
+                  <i class="icon-inbox"></i>
+                  All Messages
+                </a>
+              </li>
+              <li class="nav-header">
+                Users
+                (
+                <span id="num-users">0</span>
+                )
+              </li>
+            <li><a href="#users/c3">
+  
+    <i class="icon-star"></i>
+  </a>
+</li></ul>
+          </div>
+        </div> -->

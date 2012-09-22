@@ -1,0 +1,55 @@
+!!! 5
+%html
+  %head
+
+    %meta{'charset' => 'utf-8'}
+    %meta{'http-equiv' => "X-UA-Compatible", 'content' => "IE=edge,chrome=1" }
+    %meta{'name'=>"viewport", 'content' => "width=device-width,initial-scale=1"}
+
+    %title Supinbomb
+    = stylesheet_link_tag    "backboneApp", :media => "all"
+    / = javascript_include_tag "application"
+    =csrf_meta_tags
+  %body
+    %div.navbar.navbar-fixed-top
+      %div.navbar-inner
+        %div.container
+          %a.brand{:href => '#'} SupinbombJS
+          %p
+            - if user_signed_in?
+              %span{:style => "color:white;"}= current_user.email
+              |
+              / =link_to "Déconnexion", destroy_user_session_path, method: :delete
+            - else
+              = link_to "Inscription", new_user_registration_path
+              |
+              link_to "Connexion", new_user_session_path
+    %div#main.container
+      %div.row
+        %div.span3
+          %div#users.well.sidebar-nav
+            %ul#user-list.nav.nav-list
+              %li.nav-header
+                Players
+                (
+                %span#num-users 0
+                )
+            %div#messages-inner
+              %div#input
+                %form
+                  %input{:type => 'text', :class => 'span2', :placeholder => 'Send message...'}
+
+        %div.span9
+          - if user_signed_in?
+            %canvas#bomberMan{:height => "500", :width => "500"}
+              IE Sucks!
+              %a{:href => "http://www.getfirefox.net/"} Get Firefox plz omfg?!!
+
+    =javascript_include_tag "backboneApp"
+
+      
+
+
+
+
+
